@@ -55,8 +55,6 @@ class BEVFormer(MVXTwoStageDetector):
         self.use_grid_mask = use_grid_mask
         self.fp16_enabled = False
         self.tnn = tnn
-        #self.i = 0
-        #self.stack = 0
 
         # temporal
         self.video_test_mode = video_test_mode
@@ -243,10 +241,6 @@ class BEVFormer(MVXTwoStageDetector):
         4 直接送入BEVFormerHead，里面是一个transformer结构，encoder部分是为了得到bev表征，decoder部分是下游任务解码器
         """
 
-        torch.cuda.reset_peak_memory_stats(device=None)
-        torch.cuda.empty_cache()
-        #st_mem = torch.cuda.memory_allocated()
-
         len_queue = img.size(1) # 构建的时间队列长度
         prev_img = img[:, :-1, ...] # 获取前两针的图像
         img = img[:, -1, ...] #当前时刻图像
@@ -268,12 +262,6 @@ class BEVFormer(MVXTwoStageDetector):
         losses_pts = self.forward_pts_train(img_feats, gt_bboxes_3d,
                                             gt_labels_3d, semantic_indices,
                                             img_metas, gt_bboxes_ignore, prev_bev)
-
-        torch.cuda.empty_cache()
-        cur_memory = torch.cuda.memory_allocated()
-        memory = torch.cuda.max_memory_allocated()
-        print(f"\nBackbone: {cur_memory/1024**3:.1f}GB")
-        print(f"Max Backbone: {memory/1024**3:.1f}GB")
 
         losses.update(losses_pts)
         return losses
@@ -348,24 +336,11 @@ class BEVFormer(MVXTwoStageDetector):
 
     def simple_test(self, img_metas, img=None, prev_bev=None, rescale=False):
         """Test function without augmentaiton."""
-        #if self.i > 100:
-        #    torch.cuda.synchronize()
-        #    st = time.time()
-
         img_feats = self.extract_feat(img=img, img_metas=img_metas)
 
         result_list = [dict() for i in range(len(img_metas))]
         new_prev_bev, seg_preds, bbox_pts = self.simple_test_pts(
             img_feats, img_metas, prev_bev, rescale=rescale)
-
-        #if self.i > 100:
-        #    torch.cuda.synchronize()
-        #    self.stack += (time.time()-st)
-
-        #self.i += 1
-        #if self.i > 101:
-        #   print(f"Latency: {self.stack/(self.i-101)*1000:.1f}ms")
-
 
         # 三种模式
         #1. single det
