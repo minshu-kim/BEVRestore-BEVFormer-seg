@@ -24,7 +24,7 @@ The proposed approach achieves the new state-of-the-art **56.9\%** in terms of N
 
 # Model
 
-We measured training memory containing tensor cache and inference time with a single batch.
+We measured training memory containing tensor cache and inference time latency with a single batch.
 
 | model                      | BEVRestore | Latency | Memory   | mIoU       |weight |
 | -------------------------- | :-------------: | :-------------: | :----------: | :----------: |---------- |
