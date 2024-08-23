@@ -1,6 +1,6 @@
 # Plugging BEVRestore into BEVFormer
 
-This repository provides BEV segmentation code based on [BEVFormer](https://github.com/fundamentalvision/BEVFormer) and [BEVRestore](https://github.com/minshu-kim/BEVRestore).
+**This repository provides BEV segmentation code based on [BEVFormer](https://github.com/fundamentalvision/BEVFormer) and [BEVRestore](https://github.com/minshu-kim/BEVRestore).**
 
 ![](./figs/000868a72138448191b4092f75ed7776.jpg)
 ![](./figs/0141260a339d4b37addb55818bbae718.jpg)
