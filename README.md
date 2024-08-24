@@ -26,7 +26,7 @@ The proposed approach achieves the new state-of-the-art **56.9\%** in terms of N
 
 We measured training memory containing tensor cache and inference time latency with a single batch.
 
-| model                      | BEVRestore | Latency | Memory   | mIoU       |weight |
+| model                      | X4 BEVRestore | Latency | Memory   | mIoU       |weight |
 | -------------------------- | :-------------: | :-------------: | :----------: | :----------: |---------- |
 |   [BEVFomer-small](https://github.com/minshu-kim/BEVRest-BEVFormer-seg/blob/main/projects/configs/bevformer/bevformer_seg.py)  |           | 125        | 9.9GB      | 40.5     |[model](https://drive.google.com/file/d/1Fn9ErCrWheNFfnCK3EZ1VmCPceUTxS5G/view?usp=share_link)|
 | [BEVFomer-small](https://github.com/minshu-kim/BEVRest-BEVFormer-seg/blob/main/projects/configs/bevformer/bevformer_bevrestore_hr_bev.py) |     V      | 104         | 2.5GB     | 41.3     |[LR](https://drive.google.com/file/d/1tUYpqrN6qXYd9uqS2PVViXG7i2GAXpwN/view?usp=sharing) / [HR](https://drive.google.com/file/d/1pNBIRXZl1ZbhupdWAfTGngbOnV_4qIn7/view?usp=share_link)|
